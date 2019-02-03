@@ -6,12 +6,14 @@ jobs:
       - image: circleci/python:2.7
     steps:
       - checkout
+      - run: export PATH=PATH:/home/circleci/.local/bin
       - run: pip install tox --user && tox -e py27
   test-py3.6:
     docker:
       - image: circleci/python:3.6
     steps:
       - checkout
+      - run: export PATH=PATH:/home/circleci/.local/bin
       - run: pip install tox --user && tox -e py36
 
 workflows:
