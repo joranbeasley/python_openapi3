@@ -5,11 +5,12 @@ from python_openapi3 import VERSION
 from setuptools import setup
 
 setup(
-    name='python-openapi3',
+    name='python_openapi3',
     version=VERSION,
     packages=['python_openapi3', 'python_openapi3.openapi_specification'],
     package_dir={'': 'src'},
-    url='http://github.com/joranbeasley/python-openapi',
+    install_requires=["future"],
+    url='https://github.com/joranbeasley/python_openapi3',
     license='GPL',
     author='Joran Beasley',
     author_email='joranbeasley@gmail.com',
