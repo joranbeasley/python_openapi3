@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/joranbeasley/python_openapi3.svg?style=svg)](https://circleci.com/gh/joranbeasley/python_openapi3)
+
 provides a complete implementation of the
 openapi3.0 spec in python
 
