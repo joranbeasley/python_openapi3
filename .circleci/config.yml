@@ -6,13 +6,14 @@ jobs:
       - image: python:2.7
     steps:
       - checkout
-      - run: pip install tox && tox -e py27
+      - run: pip install pytest future && pytest tests
   test-py3.6:
     docker:
       - image: python:3.6
     steps:
       - checkout
-      - run: pip install tox && tox -e py36
+      - run: pip install pytest future && pytest tests
+
 
 workflows:
   version: 2
