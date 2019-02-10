@@ -76,13 +76,18 @@ class _Dictified(object):
             return convert_dict(self._data)
         elif isinstance(self._data,Iterable):
             return convert_list(self._data)
-
+class AlternateReturn(Exception):
+    def __init__(self,returnVal):
+        self.returnVal = returnVal
 class oas__metaclass__(type):
     def __call__(self, *args, **kwargs):
         #: allow classes to overload preprocess_args_kwargs
-        args, kwargs = getattr(self, 'preprocess_args_kwargs', lambda a, kw: (a, kw))(args, kwargs)
-        #: allow classes to overload preprocess_args
-        args = getattr(self, 'preprocess_args', lambda a: a)(args)
-        #: allow classes to overload preprocess_kwargs
-        kwargs = getattr(self, 'preprocess_kwargs', lambda kw: kw)(kwargs)
+        try:
+            args, kwargs = getattr(self, 'preprocess_args_kwargs', lambda a, kw: (a, kw))(args, kwargs)
+            #: allow classes to overload preprocess_args
+            args = getattr(self, 'preprocess_args', lambda a: a)(args)
+            #: allow classes to overload preprocess_kwargs
+            kwargs = getattr(self, 'preprocess_kwargs', lambda kw: kw)(kwargs)
+        except AlternateReturn as e:
+            return e.returnVal
         return type.__call__(self, *args, **kwargs)
