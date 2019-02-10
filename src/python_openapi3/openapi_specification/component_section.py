@@ -1,6 +1,7 @@
 from python_openapi3._util import  ensure_class, OASBase, DEFAULT_IGNORE
 from python_openapi3.openapi_specification.oas_parameters import OASSchemaObject, OASParameterObject
-from python_openapi3.openapi_specification.oas_response import OASResponseObject, OASRequestBodyObject, OASHeaderObject
+from python_openapi3.openapi_specification.oas_response import OASResponseObject, OASRequestBodyObject, OASHeaderObject, \
+    OASExampleObject
 
 
 class OASComponentsSection(OASBase):

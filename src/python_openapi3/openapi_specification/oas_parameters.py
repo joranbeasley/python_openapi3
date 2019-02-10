@@ -1,5 +1,6 @@
 from python_openapi3._util import ensure_allowed, OASBase, ensure_class,\
     TypedMapFactory, TypedListFactory, DEFAULT_IGNORE,  guess_example_from_schema
+from python_openapi3.oasmetabase_util import AlternateReturn
 from python_openapi3.openapi_specification.oas_definitions import parameter_kwargs, \
     schema_kwargs, style_values, allowed_aos_base_types
 
@@ -106,6 +107,9 @@ class OASSchemaObject(OASBase):
         _type = kwargs.pop('type',kwargs.pop('_type',None))
         if _type:
             kwargs['_type'] = _type
+
+        if len(kwargs.keys()) == 1 and kwargs.get("$ref",None):
+            raise AlternateReturn(OASReferenceObject(kwargs.pop('$ref')))
         return kwargs
 class OASParameterObject(OASBase):
     """
