@@ -98,7 +98,7 @@ class OASSchemaObject(OASBase):
         if _type.lower() == "array":
             if not self._data.get('items', None):
                 raise TypeError("Cannot assign `array` type to schema, without an `items` key as well")
-            self._data['items'] = TypedListFactory(OASSchemaObject)(self._data['items'])
+            self._data['items'] = OASSchemaObject(**self._data['items'])
         self.update({"example":guess_example_from_schema(self._data)})
 
     @classmethod
