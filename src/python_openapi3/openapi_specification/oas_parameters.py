@@ -107,9 +107,11 @@ class OASSchemaObject(OASBase):
         _type = kwargs.pop('type',kwargs.pop('_type',None))
         if _type:
             kwargs['_type'] = _type
-
-        if len(kwargs.keys()) == 1 and kwargs.get("$ref",None):
-            raise AlternateReturn(OASReferenceObject(kwargs.pop('$ref')))
+        ref = kwargs.pop('$ref',kwargs.pop('ref',None))
+        if ref:
+            if kwargs:
+                print("Warning ignoring additional kwargs for $reference Object %s"%(kwargs,))
+            raise AlternateReturn(OASReferenceObject(ref))
         return kwargs
 class OASParameterObject(OASBase):
     """
